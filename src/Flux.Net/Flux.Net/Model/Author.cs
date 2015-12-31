@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Flux.Net
+namespace Flux.Net.Model
 {
-    public enum ActionTypes
+    public class Author
     {
-        DELETE_MESSAGE,
-        ADD_MESSAGE
+        public Int64 Id { get; set; }
+
+        public String Name { get; set; }
     }
 }

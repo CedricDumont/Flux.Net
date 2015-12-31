@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Flux.Net.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,13 +22,22 @@ namespace Flux.Net
 
         public void StoreChanged(object sender, EventArgs args)
         {
+            Message lastMessage = _store.Messages.Last();
             //Kind of rendering
-            Console.WriteLine($"I am {Name} and Got a change event from store : new data is :" + _store.Data);
+            Console.WriteLine($"[{this.Name} display ] {lastMessage.Author.Name} : {lastMessage.Text}");
         }
 
-        public void ChangeData(string data)
+        public void CreateMessage(string text)
         {
-            Action action = new Action() { Type = ActionTypes.CHANGE_DATA, Data = data };
+            Author author = new Author() { Name = this.Name };
+            Message msg = new Message(author, text);
+            Action action = new Action() { Type = ActionTypes.ADD_MESSAGE, Message = msg };
+            action.Dispatch();
+        }
+
+        public void DeleteMessage(Message msg)
+        {
+            Action action = new Action() { Type = ActionTypes.DELETE_MESSAGE, Message = msg };
             action.Dispatch();
         }
     }

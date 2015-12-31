@@ -13,12 +13,10 @@ namespace Flux.Net.Cmd
             Dispatcher dispatcher = Dispatcher.Instance;
             Store store = new Store();
             dispatcher.Register(store.HandleAction);
-            Client cli1 = new Client("client 1", store);
-            Client cli2 = new Client("client 2", store);
-            cli1.ChangeData("newData");
-            cli1.ChangeData("anotherData");
-            Api api = new Api();
-            api.UpperCaseData();
+            Client cli1 = new Client("Bill", store);
+            Client cli2 = new Client("Jing", store);
+            cli1.CreateMessage("Hey jin, how are you");
+            cli2.CreateMessage("Fine thanks !");
 
             Console.ReadLine();
         }

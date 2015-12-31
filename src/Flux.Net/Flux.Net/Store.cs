@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Flux.Net.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,34 +12,48 @@ namespace Flux.Net
 
     public class Store
     {
-        public string data;
+        private IList<Message> messages = new List<Message>();
 
         public event ChangedEventHandler Changed;
 
-        public string Data {
+        public IList<Message> Messages {
             get
             {
-                return data;
-            }
-            private set
-            {
-                data = value;
-                if(Changed != null)
-                {
-                    Changed(this, null);
-                }
+                return messages;
             }
         }
+
+        public void AddMessage(Message msg)
+        {
+            this.messages.Add(msg);
+            NotifyChange();
+        }
+
+        public void RemoveMessage(Message message)
+        {
+            Message msgtobeRemoved = this.messages.Where((msg) => msg.Id == message.Id).FirstOrDefault();
+            this.messages.Remove(msgtobeRemoved);
+            NotifyChange();
+        }
+
+        private void NotifyChange()
+        {
+            if (Changed != null)
+            {
+                Changed(this, null);
+            }
+        }
+
 
         public void HandleAction(Action action)
         {
             switch(action.Type)
             {
-                case ActionTypes.CHANGE_DATA:
-                    this.Data = action.Data;
+                case ActionTypes.ADD_MESSAGE:
+                    this.AddMessage(action.Message);
                     break;
-                case ActionTypes.UPPERCASE_DATA:
-                    this.Data = this.Data.ToUpper();
+                case ActionTypes.DELETE_MESSAGE:
+                    this.RemoveMessage(action.Message);
                     break;
                 default:
                     throw new ArgumentException();
