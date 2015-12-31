@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace Flux.Net
 {
+
+
     public class Action
     {
-
-        public const string UPPERCASE_DATA = "UPPERCASE_DATA";
-
-        public const string CHANGE_DATA = "CHANGE_DATA";
 
         public string Type { get; set; }
 

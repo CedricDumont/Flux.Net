@@ -10,7 +10,7 @@ namespace Flux.Net
     {
         public void UpperCaseData()
         {
-            Action action = new Action() { Type = Action.UPPERCASE_DATA, Data = null };
+            Action action = new Action() { Type = ActionTypes.UPPERCASE_DATA, Data = null };
             action.Dispatch();
         }
     }

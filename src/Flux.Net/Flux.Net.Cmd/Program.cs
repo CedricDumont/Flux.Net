@@ -15,8 +15,8 @@ namespace Flux.Net.Cmd
             dispatcher.Register(store.HandleAction);
             Client cli1 = new Client("client 1", store);
             Client cli2 = new Client("client 2", store);
-            cli1.SendSomeData("newData");
-            cli1.SendSomeData("anotherData");
+            cli1.ChangeData("newData");
+            cli1.ChangeData("anotherData");
             Api api = new Api();
             api.UpperCaseData();
 

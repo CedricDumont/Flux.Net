@@ -21,13 +21,13 @@ namespace Flux.Net
 
         public void StoreChanged(object sender, EventArgs args)
         {
-           
+            //Kind of rendering
             Console.WriteLine($"I am {Name} and Got a change event from store : new data is :" + _store.Data);
         }
 
-        public void SendSomeData(string data)
+        public void ChangeData(string data)
         {
-            Action action = new Action() { Type = Action.CHANGE_DATA, Data = data };
+            Action action = new Action() { Type = ActionTypes.CHANGE_DATA, Data = data };
             action.Dispatch();
         }
     }

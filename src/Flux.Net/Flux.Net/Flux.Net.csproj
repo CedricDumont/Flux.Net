@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Action.cs" />
+    <Compile Include="ActionTypes.cs" />
     <Compile Include="Api.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Dispatcher.cs" />

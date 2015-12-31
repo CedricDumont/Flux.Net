@@ -34,10 +34,10 @@ namespace Flux.Net
         {
             switch(action.Type)
             {
-                case Action.CHANGE_DATA:
+                case ActionTypes.CHANGE_DATA:
                     this.Data = action.Data;
                     break;
-                case Action.UPPERCASE_DATA:
+                case ActionTypes.UPPERCASE_DATA:
                     this.Data = this.Data.ToUpper();
                     break;
                 default:
