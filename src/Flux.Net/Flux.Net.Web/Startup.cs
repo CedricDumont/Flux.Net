@@ -12,6 +12,9 @@ namespace Flux.Net.Web
         public void Configuration(IAppBuilder app)
         {
             app.MapSignalR();
+            //the line below is just needed to bootsrap the application.
+            //it should (will) be replaced by DI later on
+            var bootstrap = MessageStore.Instance; 
         }
     }
 }
